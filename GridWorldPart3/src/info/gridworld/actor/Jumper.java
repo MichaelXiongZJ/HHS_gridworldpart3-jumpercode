@@ -1,36 +1,36 @@
 package info.gridworld.actor;
 
-import java.awt.Color;
 
-public class Jumper extends Actor
-{
-	public Jumper()
-	{
+import info.gridworld.grid.*;
+
+
+public class Jumper extends Actor{
+	
+	
+	public Jumper() {
 		
 	}
 	
-	public Jumper(Color color)
-	{
+	
+	public void turn() {
 		
 	}
 	
-	public void act()
-    {
-        
-    }
 	
-	public boolean canMove()
-	{
+	public void move() {
+		
+	}
+	
+	
+	public void act() {
+		
+	}
+	
+	public boolean canMove() {
+		
+		
 		return false;
 	}
 	
-	public void move()
-	{
-		
-	}
 	
-	public void turn()
-	{
-		
-	}
 }
