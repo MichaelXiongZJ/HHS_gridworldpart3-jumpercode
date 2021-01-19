@@ -1,0 +1,25 @@
+Specify: Each group creates a class called Jumper. This actor can move forward two cells in each move. It “jumps” over rocks and flowers. 
+It does not leave anything behind it when it jumps. In the small groups, discuss and clarify the details of the problem: 
+
+What will a jumper do if the location in front of it is empty, but the location two cells in front contains a flower or a rock? 
+It will not jump and then turn 90 degrees to the right
+
+
+What will a jumper do if the location two cells in front of the jumper is out of the grid?
+It will not jump and then turn 90 degrees to the right
+
+
+What will a jumper do if it is facing an edge of the grid?
+It turns 90 degrees to the right
+
+
+What will a jumper do if another actor (not a flower or a rock) is in the cell that is two cells in front of the jumper?
+It could turn around 180 degrees
+
+
+What will a jumper do if it encounters another jumper in its path?
+It would turn 45 degrees and continue in its path
+
+
+What if the jumper is surrounded by rocks that are one block away from it.
+It will turn 90 degrees 4 times, and turn 45 degrees after
