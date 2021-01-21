@@ -8,7 +8,6 @@ public class Jumper extends Actor{
 	
 	
 	public Jumper() {
-		setColor(Color.RED);
 	}
 	
 	
@@ -23,12 +22,20 @@ public class Jumper extends Actor{
             return;
         Location loc = getLocation();
         Location next = loc.getAdjacentLocation(getDirection());
-        if (gr.isValid(next))
+        if (gr.isValid(next)) {
             moveTo(next);
-        else
+            Location secNext = next.getAdjacentLocation(getDirection());
+            if (gr.isValid(secNext)) {
+            	moveTo(secNext);
+            }else {
+            	removeSelfFromGrid();
+            }
+        }
+        else {
             removeSelfFromGrid();
-        Flower flower = new Flower(getColor());
-        flower.putSelfInGrid(gr, loc);
+        }
+    //    Flower flower = new Flower(getColor());
+    //    flower.putSelfInGrid(gr, loc);
 	}
 	
 	
@@ -52,5 +59,17 @@ public class Jumper extends Actor{
         return (neighbor == null) || (neighbor instanceof Flower);
 	}
 	
-	
+	public boolean canJump() {
+		
+		Grid<Actor> gr = getGrid();
+        if (gr == null)
+            return false;
+        Location loc = getLocation();
+        Location next = loc.getAdjacentLocation(getDirection());
+        Location secNext = next.getAdjacentLocation(getDirection());
+        if (!gr.isValid(secNext))
+            return false;
+        Actor neighbor = gr.get(secNext);
+        return (neighbor == null) || (neighbor instanceof Flower);
+	}
 }
