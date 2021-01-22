@@ -24,26 +24,35 @@ public class Jumper extends Actor{
         Location next = loc.getAdjacentLocation(getDirection());
         if (gr.isValid(next)) {
             moveTo(next);
-            Location secNext = next.getAdjacentLocation(getDirection());
-            if (gr.isValid(secNext)) {
-            	moveTo(secNext);
-            }else {
-            	removeSelfFromGrid();
-            }
         }
         else {
             removeSelfFromGrid();
         }
-    //    Flower flower = new Flower(getColor());
-    //    flower.putSelfInGrid(gr, loc);
 	}
 	
+	public void jump() {
+        Grid<Actor> gr = getGrid();
+        if (gr == null)
+            return;
+        Location loc = getLocation();
+        Location next = loc.getAdjacentLocation(getDirection());
+        Location secNext = next.getAdjacentLocation(getDirection());
+        if (gr.isValid(secNext)) {
+            moveTo(secNext);
+        }
+        else {
+            removeSelfFromGrid();
+        }
+	}
 	
 	public void act() {
-		 if (canMove())
-	            move();
-	        else
-	            turn();
+		 if (canJump()){
+			 jump();
+		 }else if(canMove()){
+			 move();
+		 }else {
+	    	 turn();
+	     }
 	}
 	
 	public boolean canMove() {
@@ -56,7 +65,7 @@ public class Jumper extends Actor{
         if (!gr.isValid(next))
             return false;
         Actor neighbor = gr.get(next);
-        return (neighbor == null) || (neighbor instanceof Flower);
+        return (neighbor == null);// || (neighbor instanceof Flower);
 	}
 	
 	public boolean canJump() {
@@ -70,6 +79,6 @@ public class Jumper extends Actor{
         if (!gr.isValid(secNext))
             return false;
         Actor neighbor = gr.get(secNext);
-        return (neighbor == null) || (neighbor instanceof Flower);
+        return (neighbor == null);// || (neighbor instanceof Flower);
 	}
 }
